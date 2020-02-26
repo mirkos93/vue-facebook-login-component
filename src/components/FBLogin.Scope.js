@@ -116,15 +116,17 @@ export default {
       }
     },
     async login() {
+      const fbLoginStatus = await getFbLoginStatus()
+      if (fbLoginStatus === 'unknown') {
+        window.location.href = 'https://www.facebook.com/dialog/oauth?client_id=' + this.appId +
+            '&redirect_uri=' + window.location.href
+        this.connected = false
+        return false
+      }
       const login = fbLogin(this.loginOptions)
       const response = await this.doAsync(login)
       if (response.status === 'connected') {
         this.connected = true
-      } else if(response.status === 'unknown' || response.status === 'not_authorized'){
-        window.location.href = 'https://www.facebook.com/dialog/oauth?client_id=' + this.appId
-                                  + '&redirect_uri=' + window.location.href;
-        this.connected = false;
-        return false;
       } else {
         this.connected = false
       }
