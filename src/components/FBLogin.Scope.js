@@ -118,10 +118,7 @@ export default {
     async login() {
       const fbLoginStatus = await getFbLoginStatus()
       if (fbLoginStatus === 'unknown') {
-        window.location.href = 'https://www.facebook.com/dialog/oauth?client_id=' + this.appId +
-            '&redirect_uri=' + window.location.href
-        this.connected = false
-        return false
+        return this.$emit('login-unknown')
       }
       const login = fbLogin(this.loginOptions)
       const response = await this.doAsync(login)
