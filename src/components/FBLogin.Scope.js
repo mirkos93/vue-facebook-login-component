@@ -143,7 +143,9 @@ export default {
       this.working = true
       try {
         await promise
-      } catch (error) {}
+      } catch (error) {
+        console.log('error doAsync', error);
+      }
       this.working = false
       return promise
     }
