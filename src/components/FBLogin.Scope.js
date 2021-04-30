@@ -61,7 +61,9 @@ export default {
           this.connected = true
         }
         this.$emit('sdk-init', { FB: sdk, scope: this.scope })
-      } catch (error) {}
+      } catch (error) {
+        console.log('fb-sdk-init-error', error);
+      }
     }
     this.doAsync(created())
   },
