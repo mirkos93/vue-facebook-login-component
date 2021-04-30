@@ -55,12 +55,17 @@ export default {
     console.log('CREATED');
     // eslint-disable-next-line no-async-promise-executor
     const created = async () => {
+      console.log('1')
       try {
+        console.log(2);
         const sdk = await this.getFbSdk()
+        console.log(3, sdk)
         const fbLoginStatus = await getFbLoginStatus()
+        console.log(4, fbLoginStatus);
         if (fbLoginStatus.status === 'connected') {
           this.connected = true
         }
+        console.log(5);
         this.$emit('sdk-init', { FB: sdk, scope: this.scope })
       } catch (error) {
         console.log('fb-sdk-init-error', error);
