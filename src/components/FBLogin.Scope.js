@@ -52,6 +52,7 @@ export default {
     removeFbSdkScript()
   },
   created() {
+    console.log('CREATED');
     // eslint-disable-next-line no-async-promise-executor
     const created = async () => {
       try {
